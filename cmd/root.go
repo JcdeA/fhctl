@@ -96,7 +96,7 @@ func initConfig() {
 
 		// Search config in home directory with name ".fhctl" (without extension).
 		viper.AddConfigPath(home)
-		viper.SetConfigType("json")
+		viper.SetConfigType("yaml")
 		viper.SetConfigName(".fhctl")
 	}
 
@@ -112,15 +112,14 @@ func createOrWriteConfig(mode fs.FileMode) (err error) {
 		home, err := os.UserHomeDir()
 		cobra.CheckErr(err)
 
-		configPath := filepath.Join(home, "/.fhctl.json")
+		configPath := filepath.Join(home, "/.fhctl.yaml")
 
 		_, err = os.Stat(configPath)
 		if !os.IsExist(err) {
-			if _, err := os.Create(configPath); err != nil {
-				cobra.CheckErr(err)
-			}
+			os.Create(configPath)
+			os.Chmod(configPath, mode)
 		}
-		if err := viper.SafeWriteConfig(); err != nil {
+		if err := viper.WriteConfig(); err != nil {
 			cobra.CheckErr(err)
 		}
 

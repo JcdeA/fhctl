@@ -25,23 +25,31 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// aliasCmd represents the alias command
-var aliasCmd = &cobra.Command{
-	Use:   "alias",
-	Short: "Alias resources for convenience",
+// proxyCmd represents the proxy command
+var proxyCmd = &cobra.Command{
+	Use:   "proxy",
+	Short: "A brief description of your command",
+	Long: `A longer description that spans multiple lines and likely contains examples
+and usage of using your command. For example:
+
+Cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.`,
+	Run: func(cmd *cobra.Command, args []string) {
+
+	},
 }
 
 func init() {
-	rootCmd.AddCommand(aliasCmd)
-	aliasCmd.DisableSuggestions = false
+	rootCmd.AddCommand(proxyCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// aliasCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// proxyCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// aliasCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// proxyCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

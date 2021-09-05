@@ -82,6 +82,7 @@ var aliasProjectCmd = &cobra.Command{
 
 func init() {
 	aliasCmd.AddCommand(aliasProjectCmd)
+	aliasProjectCmd.Aliases = []string{"proj"}
 
 	// Here you will define your flags and configuration settings.
 

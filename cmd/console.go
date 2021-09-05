@@ -22,26 +22,36 @@ THE SOFTWARE.
 package cmd
 
 import (
+	"fmt"
+
 	"github.com/spf13/cobra"
 )
 
-// aliasCmd represents the alias command
-var aliasCmd = &cobra.Command{
-	Use:   "alias",
-	Short: "Alias resources for convenience",
+// consoleCmd represents the console command
+var consoleCmd = &cobra.Command{
+	Use:   "console",
+	Short: "A brief description of your command",
+	Long: `A longer description that spans multiple lines and likely contains examples
+and usage of using your command. For example:
+
+Cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.`,
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("console called")
+	},
 }
 
 func init() {
-	rootCmd.AddCommand(aliasCmd)
-	aliasCmd.DisableSuggestions = false
+	rootCmd.AddCommand(consoleCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// aliasCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// consoleCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// aliasCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// consoleCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

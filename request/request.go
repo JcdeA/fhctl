@@ -1,6 +1,8 @@
 package request
 
 import (
+	"errors"
+
 	"github.com/jcdea/aarch64-client-go"
 
 	"github.com/jcdea/fhctl/check"
@@ -23,6 +25,9 @@ func GetProjects() (response aarch64.ProjectsResponse, err error) {
 	resp, err := client.Projects()
 	if err != nil {
 		s.StopFail()
+		if !resp.Meta.Success {
+			return aarch64.ProjectsResponse{}, errors.New(resp.Meta.Message)
+		}
 		return aarch64.ProjectsResponse{}, err
 	}
 	s.Stop()
